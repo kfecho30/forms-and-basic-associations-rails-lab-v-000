@@ -31,9 +31,8 @@ class Song < ActiveRecord::Base
   end
 
   def note_ids=(ids)
-    ids.each do |id|
-      note = Note.find(id)
-      self.notes << note
+    notes.each do |note|
+      self.notes.build(content: note) if !note.empty?
     end
   end
 end
